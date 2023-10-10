@@ -74,6 +74,16 @@ const questions = [
         "SIL Open Font License 1.1",
         "The Unlicense",
         "zLib License"    ]
+    },
+    {
+        name:"github",
+        type:"input",
+        message:"Please enter your github username."
+    },
+    {
+        name:"email",
+        type:"input",
+        message:"Please enter you email."
     }
 ];
 
@@ -111,6 +121,10 @@ function writeToFile(data) {
 
     ${markdown[10]}
     ${data.test}
+
+    ## Questions
+    Github : https://github.com/${data.github}
+    Email : ${data.email}
 
     ${licenseSection}
 

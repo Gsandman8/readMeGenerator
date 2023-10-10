@@ -28,7 +28,7 @@ function renderLicenseBadge(license) {
     "zLib License":"[![License: Zlib](https://img.shields.io/badge/License-Zlib-lightgrey.svg)](https://opensource.org/licenses/Zlib)",
     "Do What The F*ck You Want To Public License":"[![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)"
   };
-  if(license="No License"){
+  if(license==="No License"){
     return badge;
   }
   badge = badges[license];
@@ -66,7 +66,7 @@ const links = {
   "zLib License":"https://opensource.org/licenses/Zlib",
   "Do What The F*ck You Want To Public License":"http://www.wtfpl.net/about/"
 };
-if(license="No License"){
+if(license==="No License"){
   return link;
 }
 link = links[license];
@@ -79,11 +79,11 @@ return link;
 function renderLicenseSection(license) {
   console.log(license);
   let licenseSection;
-  if(license="No License"){
+  if(license==="No License"){
     licenseSection="";
     return licenseSection;
   }
-  renderLicenseLink(license)
+  let link = renderLicenseLink(license);
   licenseSection = 
   `## License
    Licensed by ${license}.
