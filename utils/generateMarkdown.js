@@ -25,15 +25,9 @@ function renderLicenseBadge(license) {
     "Perl License":"[![License: Artistic-2.0](https://img.shields.io/badge/License-Perl-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)",
     "SIL Open Font License 1.1":"[![License: Open Font-1.1](https://img.shields.io/badge/License-OFL_1.1-lightgreen.svg)](https://opensource.org/licenses/OFL-1.1)",
     "The Unlicense":"[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)",
-    "zLib License":"[![License: Zlib](https://img.shields.io/badge/License-Zlib-lightgrey.svg)](https://opensource.org/licenses/Zlib)" 
-
-  
-    
-
-
-
-
-  }
+    "zLib License":"[![License: Zlib](https://img.shields.io/badge/License-Zlib-lightgrey.svg)](https://opensource.org/licenses/Zlib)",
+    "Do What The F*ck You Want To Public License":"[![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)"
+  };
   if(license="No License"){
     return badge;
   }
@@ -44,11 +38,55 @@ function renderLicenseBadge(license) {
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {}
+function renderLicenseLink(license) {
+  let link = "";
+const links = {
+  "Apache 2.0 License" : "https://opensource.org/licenses/Apache-2.0",
+  "The Artistic License 2.0": "https://opensource.org/licenses/Artistic-2.0",
+  "Boost Software License 1.0":"https://www.boost.org/LICENSE_1_0.txt",
+  "BSD 2-clause 'Simplified' license":"https://opensource.org/licenses/BSD-2-Clause",
+  "BSD 3-clause 'New' or 'Revised license":"https://opensource.org/licenses/BSD-3-Clause",
+  "Creative Commons Zero v1.0 Universal":"http://creativecommons.org/publicdomain/zero/1.0/",
+  "Creative Commons Attribution 4.0": "https://creativecommons.org/licenses/by/4.0/",
+  "Creative Commons Attribution ShareAlike 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "Eclipse Public License 1.0": "https://opensource.org/licenses/EPL-1.0",
+  "Eclipse Public License 2.0": "https://opensource.org/licenses/EPL-2.0",
+  "GNU Affero General Public License v3.0":"https://www.gnu.org/licenses/agpl-3.0",
+  "GNU General Public License v2.0":"https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html",
+  "GNU General Public License v3.0":"https://www.gnu.org/licenses/gpl-3.0",
+  "GNU Lesser General Public License v3.0":"https://www.gnu.org/licenses/lgpl-3.0",
+  "IBM Public License v1.0":"Licensehttps://opensource.org/licenses/IPL-1.0",
+  "ISC":"https://opensource.org/licenses/ISC",
+  "MIT":"https://opensource.org/licenses/MIT",
+  "Mozilla Public License 2.0":"https://opensource.org/licenses/MPL-2.0",
+  "Perl License":"https://opensource.org/licenses/Artistic-2.0",
+  "SIL Open Font License 1.1":"https://opensource.org/licenses/OFL-1.1",
+  "The Unlicense":"(http://unlicense.org/",
+  "zLib License":"https://opensource.org/licenses/Zlib",
+  "Do What The F*ck You Want To Public License":"http://www.wtfpl.net/about/"
+};
+if(license="No License"){
+  return link;
+}
+link = links[license];
+return link;
+}
+
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
+  let licenseSection;
+  if(license="No License"){
+    licenseSection="";
+    return licenseSection;
+  }
+  renderLicenseLink(license)
+  licenseSection = 
+  `## License
+   Licensed by ${license}.
+   ${link}`;
+   return licenseSection;
 }
 
 // TODO: Create a function to generate markdown for README
@@ -59,7 +97,6 @@ function generateMarkdown(data) {
   let usageHeader = "";
   let contributionHeader = "";
   let testHeader = "";
-  let licenseHeader = "";
   if(data.title!="N"){
     titleHeader = `# Title`;
   } 
@@ -78,16 +115,12 @@ function generateMarkdown(data) {
   if(data.test!="N"){
     testHeader = "## Tests"
   }
-  if(data.license!="No License"){
-    licenseHeader = "## License";
-  }
   return titleHeader, 
   descriptionHeader,
   installationHeader, 
   usageHeader, 
   contributionHeader,
-  testHeader,
-  licenseHeader;
+  testHeader;
   
 
 }

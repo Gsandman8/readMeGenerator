@@ -73,11 +73,18 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(data) {
+    generate.renderLicenseBadge(data.license);
+    generate.renderLicenseSection(data.license);
+    generate.generateMarkdown(data);
+    
+}
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questions);
+    inquirer.prompt(questions).then(response=>{
+        writeToFile(response)
+    });
 }
 
 // Function call to initialize app
