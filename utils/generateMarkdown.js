@@ -39,6 +39,7 @@ function renderLicenseBadge(license) {
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
+  console.log(license);
   let link = "";
 const links = {
   "Apache 2.0 License" : "https://opensource.org/licenses/Apache-2.0",
@@ -76,6 +77,7 @@ return link;
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
+  console.log(license);
   let licenseSection;
   if(license="No License"){
     licenseSection="";
@@ -91,36 +93,52 @@ function renderLicenseSection(license) {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  let titleHeader= "";
   let descriptionHeader = "";
+  let descriptionLink = "";
   let installationHeader = "";
+  let installationLink = "";
   let usageHeader = "";
+  let usageLink = "";
   let contributionHeader = "";
+  let contributionLink = "";
   let testHeader = "";
-  if(data.title!="N"){
-    titleHeader = `# Title`;
-  } 
-  if(data.description!="N"){
+  let testLink = "";
+  let licenseLink = "";
+  if(data.description!=""){
     descriptionHeader = `## Description`;
+    descriptionLink = `[Description](#description)`
   }
-  if(data.installation!="N"){
+  if(data.installation!=""){
     installationHeader = "## Installation";
+    installationLink = "[Installation](#installation)"
   }
-  if(data.usage!="N"){
+  if(data.usage!=""){
     usageHeader = "## Usage";
+    usageLink = "[Usage](#usage)"
   }
-  if(data.contribution!="N"){
+  if(data.contribution!=""){
     contributionHeader = "## Contribution";
+    contributionLink = "[Contribution](#contribution)"
   }
-  if(data.test!="N"){
+  if(data.test!=""){
     testHeader = "## Tests"
+    testLink = "[Tests](#tests)"
   }
-  return titleHeader, 
+  if(data.license!="No License"){
+    licenseLink = "[License](#license)"
+  }
+  return [
+  descriptionLink, 
+  installationLink,
+  usageLink,
+  contributionLink,
+  testLink,
+  licenseLink,
   descriptionHeader,
-  installationHeader, 
-  usageHeader, 
+  installationHeader,
+  usageHeader,
   contributionHeader,
-  testHeader;
+  testHeader];
   
 
 }

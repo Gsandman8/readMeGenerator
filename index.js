@@ -4,40 +4,45 @@ const generate = require("./utils/generateMarkdown.js");
 const fs = require("fs");
 // TODO: Create an array of questions for user input
 const questions = [
+    {   
+        name:"file",
+        type:"input",
+        message:"What would you like your readMe file to be called?"
+    },
     {
         name: "title",
         type:"input",
-        message:"What is the title of your application? Type N if you do not want to include a title."
+        message:"What is the title of your application? Enter nothing if you do not want this section."
     },
     {
         name:"description",
         type:"input",
-        message:"Provide a description of your app. Type N if you do not want to include a description."
+        message:"Provide a description of your app. Enter nothing if you do not want this section."
     },
     {
         name:"installation",
         type:"input",
-        message:"How do you install your app? Type N if you do not want to include installation details."
+        message:"How do you install your app? Enter nothing if you do not want this section."
     },
     {
         name:"usage",
         type:"input",
-        message:"How do you use your app? Type N if you do not want to include usage details."
+        message:"How do you use your app? Enter nothing if you do not want this section."
     },
     {
         name: "contribution",
         type:"input",
-        message:"How can you contribute to the app? Type N if you do not want to include contribution details."
+        message:"How can you contribute to the app? Enter nothing if you do not want this section."
     },
     {   
         name: "issues",
         type:"input",
-        message: "How can you report issues? Type N if you do not want to include details on reporting issues."
+        message: "How can you report issues? Enter nothing if you do not want this section."
     },
     {
         name: "test",
         type:"input",
-        message:"What tests does you application have? Type N if you do not want to include details on testing."
+        message:"What tests does you application have? Enter nothing if you do not want this section."
     },
     {
         name: "license",
@@ -74,10 +79,46 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(data) {
-    generate.renderLicenseBadge(data.license);
-    generate.renderLicenseSection(data.license);
-    generate.generateMarkdown(data);
-    
+    console.log(data.license);
+    let badge = generate.renderLicenseBadge(data.license);
+    console.log(badge);
+    let licenseSection = generate.renderLicenseSection(data.license);
+    console.log(licenseSection);
+    const markdown = generate.generateMarkdown(data);
+    fs.writeFile(`${data.file}.md`,
+    `# ${data.title}
+    ${badge}
+
+    ## Table of Contents
+    ${markdown[0]}
+    ${markdown[1]}
+    ${markdown[2]}
+    ${markdown[3]}
+    ${markdown[4]}
+    ${markdown[5]}
+
+    ${markdown[6]}
+    ${data.description}
+
+    ${markdown[7]}
+    ${data.installation}
+
+    ${markdown[8]}
+    ${data.usage}
+
+    ${markdown[9]}
+    ${data.contribution}
+
+    ${markdown[10]}
+    ${data.test}
+
+    ${licenseSection}
+
+    `, err => {
+        if(err){console.log("There was an error")}
+        console.log("File was created successfully!")
+    } )
+
 }
 
 // TODO: Create a function to initialize app
