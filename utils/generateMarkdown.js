@@ -39,7 +39,6 @@ function renderLicenseBadge(license) {
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-  console.log(license);
   let link = "";
 const links = {
   "Apache 2.0 License" : "https://opensource.org/licenses/Apache-2.0",
@@ -77,7 +76,6 @@ return link;
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  console.log(license);
   let licenseSection;
   if(license==="No License"){
     licenseSection="";
@@ -85,9 +83,9 @@ function renderLicenseSection(license) {
   }
   let link = renderLicenseLink(license);
   licenseSection = 
-  `## License
-   Licensed by ${license}.
-   ${link}`;
+`## License
+Licensed by ${license}.
+${link}`;
    return licenseSection;
 }
 

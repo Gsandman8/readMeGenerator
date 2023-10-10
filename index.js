@@ -89,11 +89,8 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(data) {
-    console.log(data.license);
     let badge = generate.renderLicenseBadge(data.license);
-    console.log(badge);
     let licenseSection = generate.renderLicenseSection(data.license);
-    console.log(licenseSection);
     const markdown = generate.generateMarkdown(data);
     fs.writeFile(`${data.file}.md`,
     `# ${data.title}
