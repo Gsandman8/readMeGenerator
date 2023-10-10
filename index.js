@@ -97,36 +97,36 @@ function writeToFile(data) {
     const markdown = generate.generateMarkdown(data);
     fs.writeFile(`${data.file}.md`,
     `# ${data.title}
-    ${badge}
+${badge}
 
-    ## Table of Contents
-    ${markdown[0]}
-    ${markdown[1]}
-    ${markdown[2]}
-    ${markdown[3]}
-    ${markdown[4]}
-    ${markdown[5]}
+## Table of Contents
+${markdown[0]}
+${markdown[1]}
+${markdown[2]}
+${markdown[3]}
+${markdown[4]}
+${markdown[5]}
 
-    ${markdown[6]}
-    ${data.description}
+${markdown[6]}
+${data.description}
 
-    ${markdown[7]}
-    ${data.installation}
+${markdown[7]}
+${data.installation}
 
-    ${markdown[8]}
-    ${data.usage}
+${markdown[8]}
+${data.usage}
 
-    ${markdown[9]}
-    ${data.contribution}
+${markdown[9]}
+${data.contribution}
 
-    ${markdown[10]}
-    ${data.test}
+${markdown[10]}
+${data.test}
 
-    ## Questions
-    Github : https://github.com/${data.github}
-    Email : ${data.email}
+## Questions
+Github : https://github.com/${data.github}
+Email : ${data.email}
 
-    ${licenseSection}
+${licenseSection}
 
     `, err => {
         if(err){console.log("There was an error")}
